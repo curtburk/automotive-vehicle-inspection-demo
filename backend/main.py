@@ -228,11 +228,14 @@ DAMAGE SEVERITY TIERS
 - MINOR: Surface-level scratches, light scuffs, paint transfer; touch-up bay can resolve
 - MODERATE: Paint chips, small dents, edge rash, scuffed bumpers; body shop repair likely
 - MAJOR: Panel damage, ANY cracked or broken lighting assembly (headlight, taillight, fog light, turn signal lens), large dents, deep gouges, torn trim, damaged grille
-- CRITICAL: Cracked windshield or window glass, cracked frame or structural members, multi-panel collision damage, missing safety equipment
+- CRITICAL: Visibly crumpled, crushed, or buckled sheet metal (hood, fender, quarter panel) consistent with impact; deformed/misaligned bumper assembly from collision (not surface dent); frontend or rear-end collision damage; cracked windshield or window glass; cracked frame or structural members; missing safety equipment; three or more panels with damage from the same impact event; estimated affected area greater than 25 percent
 
 SEVERITY ASSIGNMENT RULES
 - If you observe damage that matches an example in MAJOR or CRITICAL, your DAMAGE_SEVERITY must be at least that tier. Do not downgrade.
 - Cracked or fractured headlight/taillight lenses are MAJOR even if the rest of the vehicle is clean. They allow water ingress and require full assembly replacement.
+- A crumpled, crushed, or deformed hood, fender, or bumper consistent with impact is CRITICAL, not MAJOR. "Significant denting" or "crumpling" of sheet metal is collision damage, not body shop damage.
+- If three or more panels show damage from a single impact event, severity is CRITICAL.
+- If estimated affected area is greater than 25 percent, severity is CRITICAL.
 - A single severe finding outranks many minor findings. Use the highest tier any single observation reaches.
 
 DISPOSITION OPTIONS
@@ -240,7 +243,7 @@ DISPOSITION OPTIONS
 - TOUCH_UP: Minor cosmetic only; route to on-site touch-up bay
 - BODY_SHOP_HOLD: Moderate damage; hold for body shop estimate
 - CARRIER_CLAIM: Damage attributable to ocean transport or carrier handling; file carrier damage claim
-- REJECT: Damage so severe vehicle should not be accepted; initiate return-to-origin
+- REJECT: Collision damage, crumpled or crushed sheet metal, or damage where likely repair cost approaches or exceeds vehicle value; vehicle should not be accepted; initiate return-to-origin. CRITICAL severity should always map to REJECT.
 
 OUTPUT FORMAT
 Answer each prompt on its own line in exactly this format. Be specific to what you actually observe in the image -- do not generalize.
