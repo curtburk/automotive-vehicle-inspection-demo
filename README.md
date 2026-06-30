@@ -10,7 +10,7 @@ Built on **HP ZGX Nano AI Station** (NVIDIA GB10 Grace Blackwell, sm_121) using 
 
 ## Demo narrative
 
-Today, RoRo (roll on-roll off) terminal damage triage is a clipboard, a phone camera, and a paper exception report. The dealer learns about damage when the vehicle shows up. This demo replaces that with a VLM-driven inspection station: yard inspector snaps a photo, gets a structured report and a disposition in seconds, the system writes the exception report and notifies downstream stakeholders.
+Today, RoRo (roll on-roll off) terminal damage triage inspections by large automotive OEMs is a clipboard, a phone camera, and a paper exception report. The dealer learns about damage when the vehicle shows up. This demo replaces that with a VLM-driven inspection station: yard inspector snaps a photo, gets a structured report and a disposition in seconds, the system writes the exception report and notifies downstream stakeholders.
 
 Audience: OEM finished-vehicle logistics, RoRo terminal operators, dealer network logistics.
 
