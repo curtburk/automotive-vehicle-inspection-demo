@@ -34,3 +34,8 @@
 - Listing "cracked lighting assembly" as a MAJOR example wasn't enough; the model would call out the crack and still grade MODERATE.
 - Fix: add an explicit "if you observe X, severity must be at least Y; do not downgrade" rule. Phrase it as a hard constraint, not a hint.
 - Also fix: VLMs default to appending boilerplate negative findings ("no broken glass observed"). Forbid this in the summary instructions or it produces self-contradictory reports.
+
+## VLM prompt: CRITICAL tier needs photo-visible anchors, not invisible ones
+- Original CRITICAL examples ("cracked frame members", "structural concerns") are invisible in a vehicle photo; model had no way to map observations to the tier.
+- Fix: add visible-from-outside anchors -- crumpled sheet metal, deformed bumper from impact, crushed hood -- plus quantitative escalation thresholds (>25% area, 3+ panels from one event).
+- Causal language ("consistent with impact", "from a single impact event") shifts the model from describing surfaces to reasoning about cause. This matters more than the tier list itself for collision cases.
