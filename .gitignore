@@ -1,0 +1,16 @@
+models/
+*.safetensors
+*.bin
+*.gguf
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+.env
+.venv/
+venv/
+*.log
+outputs/
+uploads/
+.vscode/
+.idea/

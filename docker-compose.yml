@@ -1,0 +1,54 @@
+# =============================================================================
+# Port-of-Entry Vehicle Inspection Analyst - Docker Compose
+#
+# Host port mapping: 8095 (host) -> 8000 (container)
+# Picked to avoid collision with existing containers on this Nano:
+#   8000 -> competitive-intel-orchestrator
+#   8091 -> competitive-intel-vllm (shared text vLLM)
+#   8092 -> ppt-translator-app
+#   8093 -> usda-crop-stress-analyst
+#   8094 -> (reserved)
+#   8095 -> vehicle-inspection-analyst  <-- this demo
+#   8888 -> searxng
+#
+# IMPORTANT: This demo starts its own in-container vLLM on internal :8090.
+# Per the standing rule, do not run this demo concurrently with the shared
+# text vLLM on :8091. Stop the shared vLLM first.
+# =============================================================================
+
+services:
+  vehicle-inspection-demo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: vehicle-inspection-analyst
+    ports:
+      - "8095:8000"
+    volumes:
+      - ./models:/models:ro
+      - ./sample-images:/app/sample-images:ro
+      - ./frontend:/app/frontend:ro
+      - ~/.cache/vllm:/root/.cache/vllm
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+      - MODEL_PATH=/models/Qwen3-VL-8B-Instruct-FP8
+      - VLLM_MODEL=/models/Qwen3-VL-8B-Instruct-FP8
+      - VLLM_BASE_URL=http://localhost:8090/v1
+      - VLLM_PORT=8090
+      - VLLM_MAX_MODEL_LEN=8192
+      - HOST_IP=${HOST_IP:-}
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 300s
